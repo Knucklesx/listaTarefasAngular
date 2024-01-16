@@ -1,4 +1,6 @@
-# 2806Memorando
+# Lista de tarefas com Angular
+
+Trata-se de uma lista de uma aplição web de uma lista de tarefas. Os botões e algumas ações estão animadas
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.1.
 
