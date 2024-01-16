@@ -44,9 +44,17 @@
     <img src="assets/imagens/ilustracao-Tarefas.png"
       alt="Ilustração de um ambiente com mesa, computador, quadro e um vaso com planta">
   </div>
-  <div *ngIf="listaTarefas.length > 0, else semTarefas">
-    <div class="lista-tarefas card-{{ tarefa.categoria }}" *ngFor="let tarefa of listaTarefas; let i = index"
-      (mouseover)="indexTarefa = i" [@hilightedState]="indexTarefa === i ? 'highlighted' : 'default'">
+  <div class="busca">
+    <p class="ff-prompt">
+      Procurando o que fazer?
+    </p>
+    <input type="search" id="campo-busca" placeholder="Busque por uma tarefa" [(ngModel)]="campoBusca"
+      (keyup)="filtrarTarefasPorDescricao(campoBusca)">
+  </div>
+  <div *ngIf="tarefasFiltradas.length > 0, else semTarefas">
+    <div @filterAnimation class="lista-tarefas card-{{ tarefa.categoria }}"
+      *ngFor="let tarefa of tarefasFiltradas; let i = index" (mouseover)="indexTarefa = i"
+      [@hilightedState]="indexTarefa === i ? 'highlighted' : 'default'">
       <div class="info-card">
         <p class="categoria-tarefa categoria-{{ tarefa.categoria }}">
           <img src="assets/icones/{{ tarefa.categoria }}.png" alt="Ícone de {{ tarefa.categoria }}">
