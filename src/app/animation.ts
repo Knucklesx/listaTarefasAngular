@@ -7,7 +7,7 @@ import {
   trigger,
 } from '@angular/animations';
 
-export const hilightedStateTrigger = trigger('hilightedState', [
+export const highlightedStateTrigger = trigger('highlightedState', [
   state(
     'default',
     style({
@@ -28,16 +28,11 @@ export const hilightedStateTrigger = trigger('hilightedState', [
         transform: 'scale(1.02)',
       })
     ),
-
     animate(200),
   ]),
 ]);
 
 export const shownStateTrigger = trigger('shownState', [
-  // transition('void => *', [
-  // para a entrada ou saído do elemento é possível colocar só :enter e :leave
-  // assim, não é preciso usar a wildcard * e o void, caso de elementos que não
-  // estão desde logo anexados ao DOM.
   transition(':enter', [
     style({
       opacity: 0,
@@ -49,7 +44,6 @@ export const shownStateTrigger = trigger('shownState', [
       })
     ),
   ]),
-  // transition('* => void', [
   transition(':leave', [
     animate(
       300,
@@ -60,7 +54,7 @@ export const shownStateTrigger = trigger('shownState', [
   ]),
 ]);
 
-export const checkBtnTrigger = trigger('checkBtn', [
+export const checkButtonTrigger = trigger('checkButton', [
   transition('* => checked', [
     animate(
       '400ms ease-in',
@@ -73,38 +67,20 @@ export const checkBtnTrigger = trigger('checkBtn', [
 
 export const filterTrigger = trigger('filterAnimation', [
   transition(':enter', [
-    style({
-      opacity: 0,
-      width: 0,
-    }),
+    style({ opacity: 0, width: 0 }),
     animate(
       '400ms ease-out',
       keyframes([
-        style({
-          offset: 0,
-          opacity: 0,
-          width: 0,
-        }),
-        style({
-          offset: 0.5,
-          opacity: 0.5,
-          width: '*',
-        }),
-        style({
-          offset: 1,
-          opacity: 1,
-          width: '*',
-        }),
+        style({ offset: 0, opacity: 0, width: 0 }),
+        style({ offset: 0.8, opacity: 0.5, width: '*' }),
+        style({ offset: 1, opacity: 1, width: '*' }),
       ])
     ),
   ]),
   transition(':leave', [
     animate(
-      '400ms  cubic-bezier(.13, .9, .8, .1) ',
-      style({
-        opacity: 0,
-        width: 0,
-      })
+      '200ms cubic-bezier(.13,.9,.8,.1)',
+      style({ opacity: 0, width: 0 })
     ),
   ]),
 ]);

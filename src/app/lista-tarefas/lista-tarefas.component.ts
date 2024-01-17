@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 
 import { TarefaService } from 'src/app/service/tarefa.service';
 import {
-  checkBtnTrigger,
+  checkButtonTrigger,
   filterTrigger,
-  hilightedStateTrigger,
+  highlightedStateTrigger,
   shownStateTrigger,
 } from '../animation';
 import { Tarefa } from '../interface/tarefa';
@@ -16,9 +16,9 @@ import { Tarefa } from '../interface/tarefa';
   templateUrl: './lista-tarefas.component.html',
   styleUrls: ['./lista-tarefas.component.css'],
   animations: [
-    hilightedStateTrigger,
+    highlightedStateTrigger,
     shownStateTrigger,
-    checkBtnTrigger,
+    checkButtonTrigger,
     filterTrigger,
   ],
 })
@@ -30,6 +30,7 @@ export class ListaTarefasComponent implements OnInit {
   indexTarefa: number = -1;
   id: number = 0;
   campoBusca: string = '';
+
   tarefasFiltradas: Tarefa[] = [];
 
   formulario: FormGroup = this.fomBuilder.group({

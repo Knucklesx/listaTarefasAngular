@@ -1,7 +1,7 @@
 .busca {
   display: flex;
   justify-content: center;
-  align-items:  center;
+  align-items: center;
   margin-bottom: 40px;
   margin-top: 40px;
 }
@@ -30,7 +30,9 @@
   padding-left: 12px;
 }
 
-input[type="search"]:focus {
+
+input[type='search']:focus {
+
   background-image: none;
   outline: none;
   text-decoration: none;
@@ -39,7 +41,8 @@ input[type="search"]:focus {
 input[type="search"]::-webkit-search-decoration,
 ::-webkit-search-cancel-button,
 ::-webkit-search-results-button,
-::-webkit-search-results-decoration { display: none }
+::-webkit-search-results-decoration { display: none; }
+
 
 @media(max-width: 1060px) {
   .busca {
