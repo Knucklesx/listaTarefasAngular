@@ -1,13 +1,16 @@
 import {
   animate,
+  group,
   keyframes,
+  query,
+  stagger,
   state,
   style,
   transition,
   trigger,
 } from '@angular/animations';
 
-export const highlightedStateTrigger = trigger('highlightedState', [
+export const highlightedTrigger = trigger('highlightedState', [
   state(
     'default',
     style({
@@ -81,6 +84,136 @@ export const filterTrigger = trigger('filterAnimation', [
     animate(
       '200ms cubic-bezier(.13,.9,.8,.1)',
       style({ opacity: 0, width: 0 })
+    ),
+  ]),
+]);
+
+export const formBtnTrigger = trigger('formBtn', [
+  transition('invalid => valid', [
+    // Se quiser usar apenas o group, sem o query, a animação deve ser feita diretamente no elemento
+    // que se quer salvar. Como se resolveu usar a animação com query é necessário
+    // passar a animação para o elemento pai e determinar o id (ou a classe) do elemento que
+    // ele vai atender
+    query('#botao-salvar', [
+      group([
+        animate(
+          200,
+          style({
+            backgroundColor: '#63B77C',
+          })
+        ),
+        animate(
+          100,
+          style({
+            transform: 'scale(1.1)',
+          })
+        ),
+      ]),
+      animate(
+        200,
+        style({
+          transform: 'scale(1)',
+        })
+      ),
+    ]),
+  ]),
+  transition('valid => invalid', [
+    query('#botao-salvar', [
+      group([
+        animate(
+          200,
+          style({
+            backgroundColor: '#6C757D',
+          })
+        ),
+        animate(
+          100,
+          style({
+            transform: 'scale(1.1)',
+          })
+        ),
+      ]),
+      animate(
+        200,
+        style({
+          transform: 'scale(1)',
+        })
+      ),
+    ]),
+  ]),
+]);
+
+export const shakeTrigger = trigger('shakeAnimation', [
+  transition('* => *', [
+    query(
+      'input.ng-invalid:focus, select.ng-invalid:focus',
+      [
+        animate(
+          '0.5s',
+          keyframes([
+            style({
+              border: '2px solid red',
+            }),
+            style({
+              transform: 'translateX(-10px)',
+            }),
+            style({
+              transform: 'translateX(10px)',
+            }),
+            style({
+              transform: 'translateX(-10px)',
+            }),
+            style({
+              transform: 'translateX(10px)',
+            }),
+            style({
+              transform: 'translateX(-10px)',
+            }),
+            style({
+              transform: 'translateX(10px)',
+            }),
+            style({
+              transform: 'translateX(-10px)',
+            }),
+            style({
+              transform: 'translateX(0)',
+            }),
+          ])
+        ),
+      ],
+      { optional: true }
+    ),
+  ]),
+]);
+
+export const listStateTrigger = trigger('listState', [
+  transition('* => *', [
+    query(
+      ':enter',
+      [
+        style({
+          opacity: 0,
+          transform: 'translateX(-100%)',
+        }),
+        stagger(200, [
+          animate(
+            '500ms ease-out',
+            keyframes([
+              style({
+                opacity: 1,
+                transform: 'translateX(15%)',
+                offset: 0.4,
+              }),
+              style({
+                opacity: 1,
+                transform: 'translateX(0)',
+                offset: 1,
+              }),
+            ])
+          ),
+        ]),
+      ],
+      { optional: true }
     ),
   ]),
 ]);
